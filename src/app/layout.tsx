@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import GlobalProvider from "@/context/GlobalProvider";
+import ValidateRoutes from "@/components/ValidateRoutes";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <GlobalProvider>
+        <ValidateRoutes>
+          <body className={inter.className}>{children}</body>
+        </ValidateRoutes>
+      </GlobalProvider>
     </html>
   );
 }
